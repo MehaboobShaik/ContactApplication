@@ -29,31 +29,71 @@
 
 			<td height="350px" valign="top">
 				<!-- pageContent -->
-				<h3>Contact List</h3> 
-				<table border="1">
+				<h3>Contact List</h3>
+				<c:if test="${param.act eq 'sv'}">
+			      <p class="sucess">Contact saved sucessfully</p>
+			 </c:if> 
+			 <c:if test="${param.act eq 'del'}">
+			      <p class="sucess">Contact deleted sucessfully</p>
+			 </c:if> 
+			  <c:if test="${param.act eq 'ed'}">
+			      <p class="sucess">Contact updated sucessfully</p>
+			 </c:if> 
+			  <c:if test="${param.act eq 'muldel'}">
+			      <p class="sucess">Contacts deleted sucessfully</p>
+			 </c:if> 
+			
+	  <table>
+	     <tr> 
+	     <td align ="right">
+			 <form action="<s:url value="/user/contact_search"/>">
+			    <input type ="text" name="freeText" value="${param.freeText}" placeholder="Enter Text To Search">
+			            <button>Find</button>
+			 </form>
+			  <br>
+	      </td>
+		  </tr>
+	   </table>
+			  
+			 <form action="<s:url value="/user/bulk_cdelete"/>">
+			    <button>Delete Selected Records</button> <br></br>
+			 
+				<table border="1" cellpadding="5">
 					<tr>
-						<td>Sr.no</td>
-						<td>Contact ID</td>
-						<td>Name</td>
-						<td>Phone</td>
-						<td>Email</td>
-						<td>Address</td>
-						<td>Remark</td>
-						<td>Action</td>
+						<th>SELECT</td>
+						<th>Contact ID</td>
+						<th>Name</td>
+						<th>Phone</td>
+						<th>Email</td>
+						<th>Address</td>
+						<th>Remark</td>
+						<th>Action</td>
 					</tr>
 					<c:forEach var="c" items="${contactList}" varStatus="st">
 					<tr>
-						<td>${st.count}</td>
+					    <td align = "center"><input type="checkbox" name="cid" value="${c.contactId}"/></td>
 						<td>${c.contactId}</td>
 						<td>${c.name}</td>
 						<td>${c.phone}</td>
 						<td>${c.email}</td>
 						<td>${c.address}</td>
 						<td>${c.remark}</td>
-						<td><button>Edit</button> | <button>Delete</button></td>
+						<s:url var="url_del" value="/user/del_contact">
+						<s:param name ="cid" value ="${c.contactId}"/>
+						</s:url>
+						<s:url var="url_edit" value="/user/edit_contact">
+						<s:param name ="cid" value ="${c.contactId}"/>
+						</s:url>
+						<td><a href="${url_edit}">Edit</a> | <a href="${url_del}">Delete</a></td>
 					</tr>
 					</c:forEach>
+					<c:if test="${empty contactList}">
+					<tr>
+					   <td colspan="8" class="error" align="center">no records present</td>
+					</tr>
+					</c:if>
 				</table>
+			</form>
 			</td>
 		</tr>
 		<tr>

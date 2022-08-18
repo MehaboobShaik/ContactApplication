@@ -10,6 +10,8 @@ public interface IContactService {
 	public void updtae(Contact contact);
 	public void delete(Integer contactId);
 	public void delete(Integer[] contactIds);
+	public Contact findById(Integer contactId);
+
 	
 	/*
 	 * this methods return all contacts of the user(who is logged in); 

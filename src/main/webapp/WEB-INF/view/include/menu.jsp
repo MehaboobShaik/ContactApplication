@@ -5,6 +5,9 @@
 <s:url var="url_reg_from" value="/reg_form"/>
 <s:url var="url_uhome" value="/user/dashboard"/>
 <s:url var="url_cform" value="/user/contact_form"/>
+<s:url var="url_clist" value="/user/clist"/>
+<s:url var="url_admin_users" value="/admin/users"/>
+<s:url var="url_home" value="/index"/>
 
 
 
@@ -15,11 +18,11 @@
 
 		
 <c:if test="${sessionScope.userId != null && sessionScope.role == 1}">
-	<a href="#">Home</a> |<a href="#">User List</a> | <a href="${url_logout}">LogOut</a>
+	<a href="#">Home</a> |<a href="${url_admin_users}">User List</a> | <a href="${url_logout}">LogOut</a>
 </c:if>
 
 
 <c:if test="${sessionScope.role != null && sessionScope.role == 2}">
-	<a href="${url_uhome}">Home</a> |<a href="${url_cform}">Add Contact</a> | <a href="#">Contact List</a> |
+	<a href="${url_uhome}">Home</a> |<a href="${url_cform}">Add Contact</a> | <a href="${url_clist}">Contact List</a> |
 	 <a href="${url_logout}">LogOut</a>
 </c:if>

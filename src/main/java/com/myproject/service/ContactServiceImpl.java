@@ -62,4 +62,10 @@ public class ContactServiceImpl extends BaseDao implements IContactService {
 		
 	}
 
+	@Override
+	public Contact findById(Integer contactId) {
+		Contact findById = contactDao.findById(contactId);
+		return findById;
+	}
+
 }

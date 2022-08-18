@@ -30,8 +30,9 @@ public class UserController {
 
 	/*
 	 * if we use get method userName and password will be shown in url so use post
-	 * to avoid such things . imp-->from controller calling the handleLogin method
-	 * dispatcher servlet is working in front controller . who will receive my
+	 * to avoid such things . 
+	 * imp-->from controller calling the handleLogin method ,dispatcher servlet is 
+	 * working in front controller . who will receive my
 	 * request and read the perameters(UN and Pass)then bind parmas to LoginCommand
 	 * object then this object will, be given to the controller params supplied by
 	 * the front controller to me to check.
@@ -87,6 +88,13 @@ public class UserController {
 
 		return "dashboard_admin"; // jsp -/WEB_INF/View/dashboardi.jsp
 	}
+	
+	@RequestMapping(value = { "/admin/users" })
+	public String getUserList(Model m) {
+        m.addAttribute("userList", userService.getUserList());
+		return "users"; // jsp -/WEB_INF/View/dashboardi.jsp
+	}
+	
 	/*
 	 * to acess the f:input we need to add command other we will get exception  
 	 */
